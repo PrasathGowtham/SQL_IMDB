@@ -1,0 +1,152 @@
+CREATE DATABASE Task;
+
+CREATE TABLE Movies (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    MovieeName VARCHAR(255),
+    Directer VARCHAR(255),
+    Language VARCHAR(255)
+);
+
+
+SELECT * FROM Movies;
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("PS1","Manirathnam","Tamil");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("RRR","Rajamouli","Telungu");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("Vikram","Lokesh","Tamil");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("Beast","Nelson","Tamil");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("Valimai","H.vinoth","Tamil");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("Viruman","Muthaiah","Tamil");
+INSERT INTO Movies (MovieeName,Directer,Language) VALUES ("Master","Nelson","Tamil");
+CREATE TABLE Media (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    Type VARCHAR(255),
+    Size VARCHAR(255)
+);
+
+SELECT * FROM Media;
+
+INSERT INTO media (Name,Type,Size) VALUES ("Songs","mp3","2mb");
+
+ALTER TABLE media ADD COLUMN Movieid INT;
+ALTER TABLE media ADD foreign key (Movieid) references movies(Id);
+INSERT INTO media (Name,Type,Size) VALUES ("Video","mp4","250mb");
+UPDATE media set Movieid = 1 where id in (1,2,5);
+UPDATE media set Movieid = 2 where id in (3);
+UPDATE media set Movieid = 3 where id in (4,6,7,8,9);
+UPDATE media set Movieid = 4 where id in (10,11,12);
+UPDATE media set Movieid = 12 where id in (13,14,15);
+UPDATE media set Movieid = 5 where id in (16,17,18,19,20,21,22,23,24);
+
+create TABLE gener(
+Id INT PRIMARY KEY auto_increment,
+Name VARCHAR(255)
+);
+
+select * FROM gener;
+
+INSERT INTO gener (Name) VALUES ("Action");
+INSERT INTO gener (Name) VALUES ("Comedy");
+INSERT INTO gener (Name) VALUES ("Periodic");
+INSERT INTO gener (Name) VALUES ("Thiriller");
+INSERT INTO gener (Name) VALUES ("Horror");
+INSERT INTO gener (Name) VALUES ("Love");
+INSERT INTO gener (Name) VALUES ("Adult");
+INSERT INTO gener (Name) VALUES ("Dance");
+INSERT INTO gener (Name) VALUES ("Adventure");
+INSERT INTO gener (Name) VALUES ("Travel");
+INSERT INTO gener (Name) VALUES ("Documentry");
+
+CREATE TABLE Movie_gener(
+Id INT primary KEY auto_increment,
+MovieId INT,
+GenreId INT,
+FOREIGN KEY (MovieId) references Movies(Id),
+ FOREIGN KEY (GenreId) REFERENCEs media(Id)
+ );
+
+select * from Movie_gener;
+
+INSERT INTO Movie_gener (MovieId,GenreId) values (1,2);
+INSERT INTO Movie_gener (MovieId,GenreId) values (2,2);
+Insert INTO movie_gener (MovieId,GenreId) Values (3,4);
+
+Create table user(
+Id INT primary key auto_increment,
+Name VARCHAR(255),
+Age varchar(255));
+
+SELECT 
+    *
+FROM
+    user;
+
+INSERT INTO user (Id,Name,Age) Values (1,"Gowtham",25);
+INSERT INTO user (Id,Name,Age) Values (2,"Sandeep",24);
+INSERT INTO user (Id,Name,Age) Values (3,"Gokul",19);
+INSERT INTO user (Id,Name,Age) Values (4,"Harish",15);
+INSERT INTO user (Id,Name,Age) Values (5,"Madhu",20);
+
+
+CREATE TABLE Reviews(
+Id INT primary KEY auto_increment,
+MoviesId INT,
+UserId INT
+);
+
+SELECT * FROM Reviews;
+ALTER TABLE Reviews ADD foreign key (Moviesid) references movies(Id);
+ALTER TABLE Reviews ADD foreign key (UserId) references user(Id);
+
+INSERT INTO user (Moviesid,UserId) VALUES (1,2);
+ALTER TABLE reviews
+ADD COLUMN rating INT;
+
+ALTER TABLE reviews ADD foreign key (Moviesid) references movies(Id);
+ALTER TABLE reviews ADD foreign key (UserId) references user(Id);
+
+
+INSERT INTO reviews (MoviesId,UserId,rating) Values (1,2,4);
+INSERT INTO reviews (MoviesId,UserId,rating) Values (2,1,4);
+INSERT INTO reviews (MoviesId,UserId,rating) Values (3,4,3);
+
+
+create TABLE artist(
+id INT primary key auto_increment,
+Name VARCHAR(255),
+Experience VARCHAR(255),
+Salary VARCHAR(255),
+Contact double);
+
+
+SELECT * from artist;
+INSERT INTO artist (Name,Experience,Salary,Contact) VALUES ("Vikram",20,"1c",99888877888);
+INSERT INTO artist (Name,Experience,Salary,Contact) VALUES ("kamal",50,"10c",77558877888);
+INSERT INTO artist (Name,Experience,Salary,Contact) VALUES ("surya",25,"10c",663358877888);
+INSERT INTO artist (Name,Experience,Salary,Contact) VALUES ("Rajini",50,"12c",663358877888);
+INSERT INTO artist (Name,Experience,Salary,Contact) VALUES ("Karthi",15,"0.5c",225358877888);
+
+CREATE TABLE Skills(
+id INT primary KEY,
+Skillname VARCHAR(255));
+
+
+SELECT * from Skills;
+
+INSERT INTO Skills (id,Skillname) VALUES (1,"Dancer");
+INSERT INTO Skills (id,Skillname) VALUES (2,"Allrounder");
+INSERT INTO Skills (id,Skillname) VALUES (3,"Allrounder");
+INSERT INTO Skills (id,Skillname) VALUES (4,"Allrounder");
+INSERT INTO Skills (id,Skillname) VALUES (5,"Allrounder");
+
+
+
+
+
+
+
+
+
+
+
+
+
